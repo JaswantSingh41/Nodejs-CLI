@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const { exec } = require('child_process')
-// const express = require('')
+const todo = require('./todo');
 
-const args = process.argv.slice(2); //access the arguments from terminal
+//access the arguments from terminal
+const args = process.argv.slice(2); 
 
 const showHelp = () => {
     console.log(`
@@ -17,6 +18,10 @@ const showHelp = () => {
         open            Open any app on your window
         clear           Clear the console
         clear-all       Clear the console completely
+        todo add        Add a new task to the todo list
+        todo list       Display the list of todos
+        todo update     Update the status of a todo
+        todo delete     Delete a todo from the list
         `)
 }
 
@@ -144,6 +149,9 @@ const cliFun = () => {
             break;
         case 'clear-all':
             clearAll();
+            break;
+        case 'todo':
+            todo(commandArgs);
             break;
         default:
             console.log(`Unknown option: ${args[0]}`);
